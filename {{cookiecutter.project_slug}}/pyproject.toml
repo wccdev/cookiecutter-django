@@ -1,0 +1,104 @@
+[tool.poetry]
+name = "{{cookiecutter.project_name}}"
+version = "{{cookiecutter.version}}"
+description = "{{cookiecutter.description}}"
+authors = ["{{cookiecutter.author_name}}"]
+
+[[tool.poetry.source]]
+name = "wcc-pypi"
+url = "https://pypi.wochacha.cn/simple/"
+default = true
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+pytz = ">=2021.3"  # https://github.com/stub42/pytz
+python-slugify = "^5.0.2"  # https://github.com/un33k/python-slugify
+Pillow = "^9.0.0"  # https://github.com/python-pillow/Pillow
+argon2-cffi = "^21.3.0"  # https://github.com/hynek/argon2_cffi
+redis = "^4.1.0"  # https://github.com/redis/redis-py
+hiredis = "^2.0.0"  # https://github.com/redis/hiredis-py
+celery = {extras = ["amqp", "gevent"], version = "^5.2.6"}  # pyup: < 6.0  # https://github.com/celery/celery
+django-celery-beat = "^2.2.1"  # https://github.com/celery/django-celery-beat
+uvicorn = { version = "^0.16.0", extras = ["standard"], optional = true }  # https://github.com/encode/uvicorn
+psycopg2 = { version = "^2.9.3", optional = true }  # https://github.com/psycopg/psycopg2
+sentry-sdk = { version = "^1.5.1", optional = true }  # https://github.com/getsentry/sentry-python
+gunicorn = { version = "^20.1.0", optional = true }  # https://github.com/benoitc/gunicorn
+httpx = {extras = ["http2"], version = "^0.22.0"}  # https://github.com/encode/httpx/
+
+# Django
+# ------------------------------------------------------------------------------
+django = "^4.1.3"  # pyup: < 4.0  # https://www.djangoproject.com/
+django-environ = "^0.8.1"  # https://github.com/joke2k/django-environ
+django-model-utils = "^4.2.0"  # https://github.com/jazzband/django-model-utils
+django-allauth = "^0.47.0"  # https://github.com/pennersr/django-allauth
+django-crispy-forms = "^1.13.0"  # https://github.com/django-crispy-forms/django-crispy-forms
+crispy-bootstrap5 = "^0.6"  # https://github.com/django-crispy-forms/crispy-bootstrap5
+django-redis = "^5.2.0"  # https://github.com/jazzband/django-redis
+channels = "^3.0.4"  # https://github.com/django/channels
+channels-redis = "^3.3.1"  # https://github.com/django/channels_redis
+django-storages = { version = "^1.12.3", extras = ["boto3"], optional = true }  # https://github.com/jschneier/django-storages
+django-anymail = { version = "^8.4", optional = true }   # https://github.com/anymail/django-anymail
+django-admin-interface = ">=0.19.1"  # https://github.com/fabiocaccamo/django-admin-interface
+django-allauth-ui = ">=0.0.17"  # https://github.com/danihodovic/django-allauth-ui
+django-widget-tweaks = ">=1.4.12"  # https://github.com/jazzband/django-widget-tweaks
+collectfast = { version = "^2.2.0", optional = true }  # https://github.com/antonagestam/collectfast
+
+# Django REST Framework
+djangorestframework = "^3.13.1"  # https://github.com/encode/django-rest-framework
+django-cors-headers = "^3.10.1" # https://github.com/adamchainz/django-cors-headers
+django-user-notification = ">=0.7.11"  # https://github.com/anyidea/django-user-notification
+django-oauth-toolkit = "^1.6.1"  # https://github.com/jazzband/django-oauth-toolkit
+djangorestframework-simplejwt = "^5.0.0"  # https://github.com/jazzband/djangorestframework-simplejwt
+drfexts = "^0.17.1"  # https://github.com/anyidea/drfexts
+drf-flex-fields = ">=0.9.7"  # https://github.com/rsinger86/drf-flex-fields
+drf-spectacular = "^0.22.1"  # https://github.com/tfranzel/drf-spectacular
+
+[tool.poetry.dev-dependencies]
+Werkzeug = ">=2.0.2" # https://github.com/pallets/werkzeug
+ipdb = ">=0.13.9"  # https://github.com/gotcha/ipdb
+psycopg2-binary = "^2.9.3"  # https://github.com/psycopg/psycopg2
+watchgod = ">=0.7"  # https://github.com/samuelcolvin/watchgod
+
+# Testing
+# ------------------------------------------------------------------------------
+mypy = ">=0.930"  # https://github.com/python/mypy
+django-stubs = ">=1.9.0"  # https://github.com/typeddjango/django-stubs
+pytest = ">=6.2.5"  # https://github.com/pytest-dev/pytest
+pytest-sugar = ">=0.9.4"  # https://github.com/Frozenball/pytest-sugar
+djangorestframework-stubs = ">=1.4.0"  # https://github.com/typeddjango/djangorestframework-stubs
+
+# Documentation
+# ------------------------------------------------------------------------------
+sphinx = ">=4.3.2"  # https://github.com/sphinx-doc/sphinx
+sphinx-autobuild = ">=2021.3.14" # https://github.com/GaretJax/sphinx-autobuild
+
+# Code quality
+# ------------------------------------------------------------------------------
+flake8 = ">=4.0.1"  # https://github.com/PyCQA/flake8
+flake8-isort = ">=4.1.1"  # https://github.com/gforcada/flake8-isort
+toml = ">=0.10.2"  # https://github.com/uiri/toml
+coverage = ">=6.2"  # https://github.com/nedbat/coveragepy
+black = ">=22.3.0"  # https://github.com/psf/black
+pylint-django = ">=2.5.0"  # https://github.com/PyCQA/pylint-django
+pylint-celery = ">=0.3"  # https://github.com/PyCQA/pylint-celery
+pre-commit = ">=2.19.0"  # https://github.com/pre-commit/pre-commit
+commitizen = ">=2.28.0"  # https://github.com/commitizen-tools/commitizen
+
+# Django
+# ------------------------------------------------------------------------------
+factory-boy = ">=3.2.1"  # https://github.com/FactoryBoy/factory_boy
+django-debug-toolbar = ">=3.2.4"  # https://github.com/jazzband/django-debug-toolbar
+django-extensions = ">=3.1.5"  # https://github.com/django-extensions/django-extensions
+django-coverage-plugin = ">=2.0.2"  # https://github.com/nedbat/django_coverage_plugin
+pytest-django = ">=4.5.2"  # https://github.com/pytest-dev/pytest-django
+
+# Django REST Framework
+# ------------------------------------------------------------------------------
+
+[tool.poetry.extras]
+production = ["uvicorn", "psycopg2", "sentry-sdk", "gunicorn", "django-storages", "django-anymail", "collectfast"]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
