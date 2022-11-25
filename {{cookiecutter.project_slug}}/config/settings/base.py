@@ -75,9 +75,11 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
+    "allauth_ui",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "widget_tweaks",
 {%- if cookiecutter.use_celery == 'y' %}
     "django_celery_beat",
 {%- endif %}
