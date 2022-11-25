@@ -11,7 +11,9 @@ import os
 import sys
 from pathlib import Path
 
+from django.urls import re_path
 from django.core.asgi import get_asgi_application
+
 
 # This allows easy placement of apps within the interior
 # {{ cookiecutter.project_slug }} directory.
@@ -20,21 +22,24 @@ sys.path.append(str(ROOT_DIR / "{{ cookiecutter.project_slug }}"))
 
 # If DJANGO_SETTINGS_MODULE is unset, default to the local settings
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
+django_asgi_app = get_asgi_application()
 
-# This application object is used by any ASGI server configured to use this file.
-django_application = get_asgi_application()
-# Apply ASGI middleware here.
-# from helloworld.asgi import HelloWorldApplication
-# application = HelloWorldApplication(application)
+from channels.auth import AuthMiddlewareStack  # noqa isort:skip
+from channels.routing import ProtocolTypeRouter, URLRouter  # noqa isort:skip
 
-# Import websocket application here, so apps from django_application are loaded first
-from config.websocket import websocket_application  # noqa isort:skip
+from notification.consumers import NotificationConsumer  # noqa isort:skip
 
-
-async def application(scope, receive, send):
-    if scope["type"] == "http":
-        await django_application(scope, receive, send)
-    elif scope["type"] == "websocket":
-        await websocket_application(scope, receive, send)
-    else:
-        raise NotImplementedError(f"Unknown scope type {scope['type']}")
+application = ProtocolTypeRouter(
+    {
+        # Django's ASGI application to handle traditional HTTP requests
+        "http": django_asgi_app,
+        # WebSocket chat handler
+        "websocket": AuthMiddlewareStack(
+            URLRouter(
+                [
+                    re_path(r"^notify/message/$", NotificationConsumer.as_asgi()),
+                ]
+            )
+        ),
+    }
+)
