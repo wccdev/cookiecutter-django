@@ -97,39 +97,39 @@ or if you're running asynchronously: ::
 Setup Email Backend
 -------------------
 
-MailHog
+MailPit
 ~~~~~~~
 
-.. note:: In order for the project to support MailHog_ it must have been bootstrapped with ``use_mailhog`` set to ``y``.
+.. note:: In order for the project to support MailPit_ it must have been bootstrapped with ``use_mailpit`` set to ``y``.
 
-MailHog is used to receive emails during development, it is written in Go and has no external dependencies.
+MailPit is used to receive emails during development, it is written in Go and has no external dependencies.
 
 For instance, one of the packages we depend upon, ``django-allauth`` sends verification emails to new users signing up as well as to the existing ones who have not yet verified themselves.
 
-#. `Download the latest MailHog release`_ for your OS.
+#. `Download the latest MailPit release`_ for your OS.
 
-#. Rename the build to ``MailHog``.
+#. Rename the build to ``MailPit``.
 
 #. Copy the file to the project root.
 
 #. Make it executable: ::
 
-    $ chmod +x MailHog
+    $ chmod +x MailPit
 
 #. Spin up another terminal window and start it there: ::
 
-    ./MailHog
+    ./MailPit
 
 #. Check out `<http://127.0.0.1:8025/>`_ to see how it goes.
 
 Now you have your own mail server running locally, ready to receive whatever you send it.
 
-.. _`Download the latest MailHog release`: https://github.com/mailhog/MailHog
+.. _`Download the latest MailPit release`: https://github.com/axllent/mailpit
 
 Console
 ~~~~~~~
 
-.. note:: If you have generated your project with ``use_mailhog`` set to ``n`` this will be a default setup.
+.. note:: If you have generated your project with ``use_mailpit`` set to ``n`` this will be a default setup.
 
 Alternatively, deliver emails over console via ``EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'``.
 

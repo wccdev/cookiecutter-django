@@ -7,16 +7,16 @@
   "email": "{{ cookiecutter.author_name.lower()|replace(' ', '-') }}@example.com",
   "version": "0.1.0",
   "open_source_license": [
+    "Not open source",
     "MIT",
     "BSD",
     "GPLv3",
-    "Apache Software License 2.0",
-    "Not open source"
+    "Apache Software License 2.0"
   ],
-  "timezone": "UTC",
+  "timezone": "Asia/Shanghai",
   "windows": "n",
-  "use_pycharm": "n",
-  "use_docker": "n",
+  "use_pycharm": "y",
+  "use_docker": "y",
   "postgresql_version": [
     "14",
     "13",
@@ -25,11 +25,13 @@
     "10"
   ],
   "cloud_provider": [
+    "Aliyun",
     "AWS",
     "GCP",
     "None"
   ],
   "mail_service": [
+    "Other SMTP",
     "Mailgun",
     "Amazon SES",
     "Mailjet",
@@ -37,18 +39,17 @@
     "Postmark",
     "Sendgrid",
     "SendinBlue",
-    "SparkPost",
-    "Other SMTP"
+    "SparkPost"
   ],
-  "use_async": "n",
-  "use_drf": "n",
+  "use_async": "y",
+  "use_drf": "y",
   "frontend_pipeline": [
     "None",
     "Django Compressor",
     "Gulp"
   ],
-  "use_celery": "n",
-  "use_mailhog": "n",
+  "use_celery": "y",
+  "use_mailpit": "y",
   "use_sentry": "n",
   "use_whitenoise": "n",
   "use_heroku": "n",

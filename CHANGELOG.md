@@ -2,6 +2,10 @@
 All enhancements and patches to Cookiecutter Django will be documented in this file.
 
 <!-- GENERATOR_PLACEHOLDER -->
+## [2022-11-25]
+
+### Added
+- Mailpit as a replacement for Mailhog (@anyidea)
 
 ## 2022.11.24
 
