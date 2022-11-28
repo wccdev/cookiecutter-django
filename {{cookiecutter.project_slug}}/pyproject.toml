@@ -20,10 +20,6 @@ redis = "^4.1.0"  # https://github.com/redis/redis-py
 hiredis = "^2.0.0"  # https://github.com/redis/hiredis-py
 celery = {extras = ["amqp", "gevent"], version = "^5.2.6"}  # pyup: < 6.0  # https://github.com/celery/celery
 django-celery-beat = "^2.2.1"  # https://github.com/celery/django-celery-beat
-uvicorn = { version = "^0.16.0", extras = ["standard"], optional = true }  # https://github.com/encode/uvicorn
-psycopg2 = { version = "^2.9.3", optional = true }  # https://github.com/psycopg/psycopg2
-sentry-sdk = { version = "^1.5.1", optional = true }  # https://github.com/getsentry/sentry-python
-gunicorn = { version = "^20.1.0", optional = true }  # https://github.com/benoitc/gunicorn
 httpx = {extras = ["http2"], version = "^0.22.0"}  # https://github.com/encode/httpx/
 
 # Django
@@ -38,11 +34,8 @@ django-redis = "^5.2.0"  # https://github.com/jazzband/django-redis
 channels = "^3.0.4"  # https://github.com/django/channels
 channels-redis = "^3.3.1"  # https://github.com/django/channels_redis
 django-storages = { version = "^1.12.3", extras = ["boto3"], optional = true }  # https://github.com/jschneier/django-storages
-django-anymail = { version = "^8.4", optional = true }   # https://github.com/anymail/django-anymail
 django-admin-interface = ">=0.19.1"  # https://github.com/fabiocaccamo/django-admin-interface
-django-allauth-ui = ">=0.0.17"  # https://github.com/danihodovic/django-allauth-ui
-django-widget-tweaks = ">=1.4.12"  # https://github.com/jazzband/django-widget-tweaks
-collectfast = { version = "^2.2.0", optional = true }  # https://github.com/antonagestam/collectfast
+django-allauth-ui = ">=0.1.0"  # https://github.com/danihodovic/django-allauth-ui
 
 # Django REST Framework
 djangorestframework = "^3.13.1"  # https://github.com/encode/django-rest-framework
@@ -54,11 +47,29 @@ drfexts = "^0.17.1"  # https://github.com/anyidea/drfexts
 drf-flex-fields = ">=0.9.7"  # https://github.com/rsinger86/drf-flex-fields
 drf-spectacular = "^0.22.1"  # https://github.com/tfranzel/drf-spectacular
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.production]
+optional = true
+
+[tool.poetry.group.production.dependencies]
+uvicorn = {version = "^0.18.2", extras = ["standard"]}  # https://github.com/encode/uvicorn
+psycopg2 = "^2.9.3"  # https://github.com/psycopg/psycopg2
+sentry-sdk = "^1.9.2"  # https://github.com/getsentry/sentry-python
+gunicorn = "^20.1.0"  # https://github.com/benoitc/gunicorn
+
+# Django
+# ------------------------------------------------------------------------------
+django-anymail = "^8.4"  # https://github.com/anymail/django-anymail
+collectfast = "^2.2.0"  # https://github.com/antonagestam/collectfast
+
+# Django REST Framework
+# ------------------------------------------------------------------------------
+
+[tool.poetry.group.dev.dependencies]
 Werkzeug = ">=2.0.2" # https://github.com/pallets/werkzeug
 ipdb = ">=0.13.9"  # https://github.com/gotcha/ipdb
+bpython = "^0.23"  # https://github.com/bpython/bpython
 psycopg2-binary = "^2.9.3"  # https://github.com/psycopg/psycopg2
-watchgod = ">=0.7"  # https://github.com/samuelcolvin/watchgod
+watchfiles = ">=0.16.1"  # https://github.com/samuelcolvin/watchfiles
 
 # Testing
 # ------------------------------------------------------------------------------
@@ -96,9 +107,31 @@ pytest-django = ">=4.5.2"  # https://github.com/pytest-dev/pytest-django
 # Django REST Framework
 # ------------------------------------------------------------------------------
 
-[tool.poetry.extras]
-production = ["uvicorn", "psycopg2", "sentry-sdk", "gunicorn", "django-storages", "django-anymail", "collectfast"]
-
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+target-version = ['py310']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | migrations
+
+  # The following are specific to Black, you probably don't want those.
+  | blib2to3
+  | tests/data
+  | profiling
+)/
+'''
