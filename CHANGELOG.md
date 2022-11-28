@@ -7,6 +7,11 @@ All enhancements and patches to Cookiecutter Django will be documented in this f
 ### Added
 - Mailpit as a replacement for Mailhog (@anyidea)
 
+## 2022.11.26
+
+### Changed
+- Fix typo in flower start for watching celery ([#3966](https://github.com/cookiecutter/cookiecutter-django/pull/3966))
+
 ## 2022.11.24
 
 ### Updated
