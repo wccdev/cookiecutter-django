@@ -24,12 +24,17 @@ ENV BUILD_ENV=${BUILD_ENVIRONMENT} \
     POETRY_VERSION=1.3.1 \
     POETRY_HOME="/opt/poetry" \
     POETRY_VIRTUALENVS_IN_PROJECT=true \
-    PATH="$POETRY_HOME/bin:$PATH" \
+    POETRY_INSTALLER_MAX_WORKERS=10 \
+    PATH="/opt/poetry/bin:$PATH" \
     # system:
     LANG=C.UTF-8 \
     LC_ALL=C.UTF-8 \
     TZ=Asia/Shanghai
 
+
+# Use aliyun mirrors to speed up.
+RUN sed -i "s/deb.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list \
+    && sed -i "s/security.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list
 
 # Install apt packages
 RUN apt-get update && apt-get install --no-install-recommends -y \

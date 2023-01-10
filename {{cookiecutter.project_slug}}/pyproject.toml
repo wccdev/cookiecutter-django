@@ -45,7 +45,7 @@ django-oauth-toolkit = "^1.6.1"  # https://github.com/jazzband/django-oauth-tool
 djangorestframework-simplejwt = "^5.0.0"  # https://github.com/jazzband/djangorestframework-simplejwt
 drfexts = "^0.19.6"  # https://github.com/anyidea/drfexts
 drf-flex-fields = ">=0.9.7"  # https://github.com/rsinger86/drf-flex-fields
-drf-spectacular = "^0.25.1"  # https://github.com/tfranzel/drf-spectacular
+drf-spectacular = { version = "^0.25.1", extras = ["sidecar"] }  # https://github.com/tfranzel/drf-spectacular
 
 [tool.poetry.group.production]
 optional = true
