@@ -69,6 +69,8 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # "django.contrib.humanize", # Handy template tags
+    "admin_interface",  # django admin interface
+    "colorfield",  # django admin interface
     "django.contrib.admin",
     "django.forms",
 ]
@@ -80,6 +82,9 @@ THIRD_PARTY_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "widget_tweaks",
+    "channels",
+    "notification",
+    "django_filters",
 {%- if cookiecutter.use_celery == 'y' %}
     "django_celery_beat",
 {%- endif %}
@@ -88,6 +93,7 @@ THIRD_PARTY_APPS = [
     "rest_framework.authtoken",
     "corsheaders",
     "drf_spectacular",
+    "drf_spectacular_sidecar",
 {%- endif %}
 ]
 
@@ -224,7 +230,7 @@ FIXTURE_DIRS = (str(APPS_DIR / "fixtures"),)
 # https://docs.djangoproject.com/en/dev/ref/settings/#session-cookie-httponly
 SESSION_COOKIE_HTTPONLY = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#csrf-cookie-httponly
-CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = False
 # https://docs.djangoproject.com/en/dev/ref/settings/#secure-browser-xss-filter
 SECURE_BROWSER_XSS_FILTER = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#x-frame-options
@@ -339,12 +345,21 @@ STATICFILES_FINDERS += ["compressor.finders.CompressorFinder"]
 # -------------------------------------------------------------------------------
 # django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/
 REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "drfexts.pagination.CustomPagination",
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_PARSER_CLASSES": ("drfexts.parsers.CustomJSONParser",),
+    "DEFAULT_RENDERER_CLASSES": (
+        "drfexts.renderers.CustomJSONRenderer",
+        "rest_framework.renderers.BrowsableAPIRenderer",
+    ),
+    "UNICON_JSON": False,
+    "DATETIME_FORMAT": "%Y-%m-%d %H:%M:%S",
+    "PAGE_SIZE": 10,
 }
 
 # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
