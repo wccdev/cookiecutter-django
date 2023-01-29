@@ -33,18 +33,18 @@ ENV BUILD_ENV=${BUILD_ENVIRONMENT} \
 
 
 # Use aliyun mirrors to speed up.
-RUN sed -i "s/deb.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list \
-    && sed -i "s/security.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list
+RUN sed -i "s/deb.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list && \
+    sed -i "s/security.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list
 
 # Install apt packages
 RUN apt-get update && apt-get install --no-install-recommends -y \
   # dependencies for building Python packages
   build-essential \
   # psycopg2 dependencies
-  libpq-dev \
+  libpq-dev && \
   # cleaning up unused files
-  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
-  && rm -rf /var/lib/apt/lists/*
+  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false && \
+  rm -rf /var/lib/apt/lists/*
 
 # Install poetry
 RUN python -c 'from urllib.request import urlopen; print(urlopen("https://install.python-poetry.org").read().decode())' | python -
