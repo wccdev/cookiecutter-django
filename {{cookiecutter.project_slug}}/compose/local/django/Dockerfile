@@ -1,4 +1,5 @@
 ARG PYTHON_VERSION=3.11-slim-bullseye
+ARG POETRY_VERSION=1.3.2
 
 # define an alias for the specfic python version used in this file.
 FROM python:${PYTHON_VERSION} as python
@@ -7,15 +8,13 @@ FROM python:${PYTHON_VERSION} as python
 FROM python as python-build-stage
 
 ARG BUILD_ENVIRONMENT=local
+ARG APP_HOME=/app
 
-ENV POETRY_VERSION=1.3.2 \
-    POETRY_HOME="/opt/poetry" \
-    POETRY_VIRTUALENVS_IN_PROJECT=true \
-    POETRY_INSTALLER_MAX_WORKERS=10 \
-    PATH="/opt/poetry/bin:$PATH" \
-    LANG=C.UTF-8 \
-    LC_ALL=C.UTF-8 \
-    TZ=Asia/Shanghai
+ENV POETRY_VIRTUALENVS_IN_PROJECT true
+ENV POETRY_INSTALLER_MAX_WORKERS 10
+ENV TZ Asia/Shanghai
+
+WORKDIR ${APP_HOME}
 
 # Install apt packages
 RUN sed -i "s/deb.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list \
@@ -26,8 +25,9 @@ RUN sed -i "s/deb.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list \
   libpq-dev
 
 
-# Install poetry
-RUN python -c 'from urllib.request import urlopen; print(urlopen("https://install.python-poetry.org").read().decode())' | python -
+# Speed up installing poetry
+RUN python3 -m pip install poetry==${POETRY_VERSION} -i https://pypi.wochacha.cn/simple/ \
+    && poetry --version
 
 # Requirements are installed here to ensure they will be cached.
 COPY ./poetry.lock ./pyproject.toml ./
