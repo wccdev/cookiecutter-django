@@ -7,6 +7,164 @@ All enhancements and patches to Cookiecutter Django will be documented in this f
 ### Added
 - Mailpit as a replacement for Mailhog (@anyidea)
 
+## 2023.02.17
+
+### Changed
+- Update version of github actions on the template project ([#4167](https://github.com/cookiecutter/cookiecutter-django/pull/4167))
+
+## 2023.02.09
+
+### Changed
+- Remove unused pip cache paths in GHA &amp; add a note for pre-commit.ci ([#4151](https://github.com/cookiecutter/cookiecutter-django/pull/4151))
+### Updated
+- Update mypy to 0.991 ([#4106](https://github.com/cookiecutter/cookiecutter-django/pull/4106))
+
+## 2023.02.08
+
+### Updated
+- Update sphinx to 6.1.3 ([#4148](https://github.com/cookiecutter/cookiecutter-django/pull/4148))
+- Update redis to 4.5.1 ([#4147](https://github.com/cookiecutter/cookiecutter-django/pull/4147))
+
+## 2023.02.07
+
+### Updated
+- Bump postcss-preset-env from 7.8.3 to 8.0.1 ([#4115](https://github.com/cookiecutter/cookiecutter-django/pull/4115))
+- Bump sass-loader from 12.6.0 to 13.2.0 ([#4116](https://github.com/cookiecutter/cookiecutter-django/pull/4116))
+- Bump babel-loader from 8.3.0 to 9.1.2 ([#4117](https://github.com/cookiecutter/cookiecutter-django/pull/4117))
+- Bump postcss-loader from 6.2.1 to 7.0.2 ([#4114](https://github.com/cookiecutter/cookiecutter-django/pull/4114))
+- Bump webpack-cli from 4.10.0 to 5.0.1 ([#4118](https://github.com/cookiecutter/cookiecutter-django/pull/4118))
+- Update redis to 4.5.0 ([#4142](https://github.com/cookiecutter/cookiecutter-django/pull/4142))
+- Update sentry-sdk to 1.15.0 ([#4141](https://github.com/cookiecutter/cookiecutter-django/pull/4141))
+
+## 2023.02.06
+
+### Changed
+- Change `RequestFactory` to `APIRequestFactory` in tests for API views ([#4110](https://github.com/cookiecutter/cookiecutter-django/pull/4110))
+### Fixed
+- Fix django-webpack-loader setup when running tests ([#4128](https://github.com/cookiecutter/cookiecutter-django/pull/4128))
+### Documentation
+- Added AWS ECS Full Deployment Article to README ([#2630](https://github.com/cookiecutter/cookiecutter-django/pull/2630))
+### Updated
+- Update hiredis to 2.2.1 ([#4123](https://github.com/cookiecutter/cookiecutter-django/pull/4123))
+- Update tox to 4.4.4 ([#4133](https://github.com/cookiecutter/cookiecutter-django/pull/4133))
+- Update django to 4.0.9 ([#4134](https://github.com/cookiecutter/cookiecutter-django/pull/4134))
+- Update django-webpack-loader to 1.8.1 ([#4132](https://github.com/cookiecutter/cookiecutter-django/pull/4132))
+
+## 2023.02.05
+
+### Documentation
+- Add note about which service to request when running locally with Docker &amp; Webpack or Gulp ([#4130](https://github.com/cookiecutter/cookiecutter-django/pull/4130))
+
+## 2023.02.03
+
+### Updated
+- Update pre-commit to 3.0.4 ([#4127](https://github.com/cookiecutter/cookiecutter-django/pull/4127))
+
+## 2023.02.02
+
+### Updated
+- Update python-slugify to 8.0.0 ([#4111](https://github.com/cookiecutter/cookiecutter-django/pull/4111))
+- Update pre-commit to 3.0.3 ([#4121](https://github.com/cookiecutter/cookiecutter-django/pull/4121))
+- Update black to 23.1.0 ([#4120](https://github.com/cookiecutter/cookiecutter-django/pull/4120))
+- Update black pre-commit hook ([#4122](https://github.com/cookiecutter/cookiecutter-django/pull/4122))
+
+## 2023.01.29
+
+### Changed
+- Add Webpack support  ([#3623](https://github.com/cookiecutter/cookiecutter-django/pull/3623))
+- Remove `BrokenLinkEmailsMiddleware` ([#4112](https://github.com/cookiecutter/cookiecutter-django/pull/4112))
+
+## 2023.01.28
+
+### Changed
+- Refactor `merge_production_dotenvs_in_dotenv.py` ([#4105](https://github.com/cookiecutter/cookiecutter-django/pull/4105))
+### Updated
+- Update isort to 5.12.0 ([#4109](https://github.com/cookiecutter/cookiecutter-django/pull/4109))
+- Auto-update pre-commit hooks ([#4108](https://github.com/cookiecutter/cookiecutter-django/pull/4108))
+
+## 2023.01.27
+
+### Updated
+- Update django-stubs to 1.14.0 ([#4103](https://github.com/cookiecutter/cookiecutter-django/pull/4103))
+
+## 2023.01.26
+
+### Changed
+- Rename BASE_DIR_PATH to BASE_DIR ([#4102](https://github.com/cookiecutter/cookiecutter-django/pull/4102))
+### Updated
+- Update pre-commit to 3.0.1 ([#4104](https://github.com/cookiecutter/cookiecutter-django/pull/4104))
+- Update tox to 4.4.2 ([#4101](https://github.com/cookiecutter/cookiecutter-django/pull/4101))
+
+## 2023.01.25
+
+### Changed
+- Rename ROOT_DIR to BASE_DIR ([#4086](https://github.com/cookiecutter/cookiecutter-django/pull/4086))
+- Update postgres and redis to point to mini tiers ([#4099](https://github.com/cookiecutter/cookiecutter-django/pull/4099))
+### Updated
+- Update coverage to 7.1.0 ([#4100](https://github.com/cookiecutter/cookiecutter-django/pull/4100))
+
+## 2023.01.24
+
+### Updated
+- Update pre-commit to 3.0.0 ([#4098](https://github.com/cookiecutter/cookiecutter-django/pull/4098))
+
+## 2023.01.23
+
+### Updated
+- Update sentry-sdk to 1.14.0 ([#4096](https://github.com/cookiecutter/cookiecutter-django/pull/4096))
+
+## 2023.01.22
+
+### Updated
+- Update django-compressor to 4.3.1 ([#4094](https://github.com/cookiecutter/cookiecutter-django/pull/4094))
+
+## 2023.01.21
+
+### Updated
+- Update django-stubs to 1.13.2 ([#4093](https://github.com/cookiecutter/cookiecutter-django/pull/4093))
+
+## 2023.01.19
+
+### Fixed
+- Add sourcemaps support to Gulp ([#4089](https://github.com/cookiecutter/cookiecutter-django/pull/4089))
+### Updated
+- Update coverage to 7.0.5 ([#4092](https://github.com/cookiecutter/cookiecutter-django/pull/4092))
+- Update redis to 4.4.2 ([#4091](https://github.com/cookiecutter/cookiecutter-django/pull/4091))
+- Update requests to 2.28.2 ([#4090](https://github.com/cookiecutter/cookiecutter-django/pull/4090))
+- Update tox to 4.3.5 ([#4087](https://github.com/cookiecutter/cookiecutter-django/pull/4087))
+
+## 2023.01.17
+
+### Updated
+- Update tox to 4.3.3 ([#4081](https://github.com/cookiecutter/cookiecutter-django/pull/4081))
+
+## 2023.01.15
+
+### Updated
+- Update pytest to 7.2.1 ([#4077](https://github.com/cookiecutter/cookiecutter-django/pull/4077))
+- Update pytz to 2022.7.1 ([#4078](https://github.com/cookiecutter/cookiecutter-django/pull/4078))
+
+## 2023.01.12
+
+### Updated
+- Update sentry-sdk to 1.13.0 ([#4074](https://github.com/cookiecutter/cookiecutter-django/pull/4074))
+
+## 2023.01.11
+
+### Changed
+- Update Celery instructions in the documentation ([#4061](https://github.com/cookiecutter/cookiecutter-django/pull/4061))
+### Updated
+- Update tox to 4.2.7 ([#4073](https://github.com/cookiecutter/cookiecutter-django/pull/4073))
+
+## 2023.01.10
+
+### Changed
+- Add dump.rdb to gitignore ([#4062](https://github.com/cookiecutter/cookiecutter-django/pull/4062))
+### Fixed
+- Exclude `.venv` from code style checks ([#4069](https://github.com/cookiecutter/cookiecutter-django/pull/4069))
+### Updated
+- Update hiredis to 2.1.1 ([#4070](https://github.com/cookiecutter/cookiecutter-django/pull/4070))
+
 ## 2023.01.08
 
 ### Updated

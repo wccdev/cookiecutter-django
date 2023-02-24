@@ -643,6 +643,13 @@ Listed in alphabetical order.
     <td>jangeador</td>
   </tr>
   <tr>
+    <td>Delphine LEMIRE</td>
+    <td>
+      <a href="https://github.com/DelphineLemire">DelphineLemire</a>
+    </td>
+    <td></td>
+  </tr>
+  <tr>
     <td>Demetris Stavrou</td>
     <td>
       <a href="https://github.com/demestav">demestav</a>
@@ -704,6 +711,13 @@ Listed in alphabetical order.
       <a href="https://github.com/dudanogueira">dudanogueira</a>
     </td>
     <td>dudanogueira</td>
+  </tr>
+  <tr>
+    <td>duffn</td>
+    <td>
+      <a href="https://github.com/duffn">duffn</a>
+    </td>
+    <td></td>
   </tr>
   <tr>
     <td>Dónal Adams</td>
@@ -1476,6 +1490,13 @@ Listed in alphabetical order.
     <td></td>
   </tr>
   <tr>
+    <td>Patrick Tran</td>
+    <td>
+      <a href="https://github.com/theptrk">theptrk</a>
+    </td>
+    <td></td>
+  </tr>
+  <tr>
     <td>Pawan Chaurasia</td>
     <td>
       <a href="https://github.com/rjsnh1522">rjsnh1522</a>
@@ -1731,6 +1752,13 @@ Listed in alphabetical order.
     <td>Théo Segonds</td>
     <td>
       <a href="https://github.com/show0k">show0k</a>
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>tildebox</td>
+    <td>
+      <a href="https://github.com/tildebox">tildebox</a>
     </td>
     <td></td>
   </tr>
