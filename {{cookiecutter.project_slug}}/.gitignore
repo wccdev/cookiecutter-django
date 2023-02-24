@@ -198,6 +198,9 @@ cmake-build-debug/
 # Mongo Explorer plugin:
 .idea/**/mongoSettings.xml
 
+# Fleet
+.fleet/
+
 ## File-based project format:
 *.iws
 
