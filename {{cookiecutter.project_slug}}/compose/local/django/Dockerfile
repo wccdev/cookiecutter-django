@@ -1,3 +1,4 @@
+# syntax = docker/dockerfile:1.2
 ARG PYTHON_VERSION=3.11-slim-bullseye
 ARG POETRY_VERSION=1.3.2
 ARG BUILD_ENVIRONMENT=local
