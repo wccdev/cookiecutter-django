@@ -389,5 +389,13 @@ WEBPACK_LOADER = {
 }
 
 {%- endif %}
+{%- if cookiecutter.use_async %}
+# django-channels
+# ------------------------------------------------------------------------------
+ASGI_APPLICATION = "config.asgi.application"
+CHANNEL_LAYERS = {
+    "default": {"BACKEND": "channels_redis.core.RedisChannelLayer", "CONFIG": {"hosts": [env("REDIS_URL")]}}
+}
+{%- endif %}
 # Your stuff...
 # ------------------------------------------------------------------------------
