@@ -15,6 +15,7 @@ from datetime import datetime, timedelta
 
 from django.utils.encoding import filepath_to_uri
 from storages.backends.s3boto3 import S3Boto3Storage
+from storages.utils import clean_name
 
 
 class StaticRootAliyunOSSStorage(S3Boto3Storage):
@@ -28,7 +29,7 @@ class MediaRootAliyunOSSStorage(S3Boto3Storage):
 
     def get_upload_url(self, name, parameters=None, expire=300, http_method=None):
         # Preserve the trailing slash after normalizing the path.
-        name = self._normalize_name(self._clean_name(name))
+        name = self._normalize_name(clean_name(name))
         if expire is None:
             expire = self.querystring_expire
 
