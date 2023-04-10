@@ -1,6 +1,6 @@
 # syntax = docker/dockerfile:1.2
 ARG PYTHON_VERSION=3.11-slim-bullseye
-ARG POETRY_VERSION=1.3.2
+ARG POETRY_VERSION=1.4.2
 ARG BUILD_ENVIRONMENT=local
 ARG APP_HOME=/app
 
@@ -21,11 +21,11 @@ WORKDIR ${APP_HOME}
 
 # Install apt packages
 RUN sed -i "s/deb.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list \
-  && apt-get update && apt-get install -y --no-install-recommends \
-  # dependencies for building Python packages
-  build-essential \
-  # psycopg2 dependencies
-  libpq-dev
+    && apt-get update && apt-get install -y --no-install-recommends \
+    # dependencies for building Python packages
+    build-essential \
+    # psycopg2 dependencies
+    libpq-dev
 
 
 # Speed up installing poetry
@@ -56,14 +56,14 @@ WORKDIR ${APP_HOME}
 
 # Install required system dependencies
 RUN sed -i "s/deb.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list \
-  && apt-get update && apt-get install -y --no-install-recommends \
-  # psycopg2 dependencies
-  libpq-dev \
-  # Translations dependencies
-  gettext \
-  # cleaning up unused files
-  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
-  && rm -rf /var/lib/apt/lists/*
+    && apt-get update && apt-get install -y --no-install-recommends \
+    # psycopg2 dependencies
+    libpq-dev \
+    # Translations dependencies
+    gettext \
+    # cleaning up unused files
+    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+    && rm -rf /var/lib/apt/lists/*
 
 # All absolute dir copies ignore workdir instruction. All relative dir copies are wrt to the workdir instruction
 # copy python dependency packages from python-build-stage

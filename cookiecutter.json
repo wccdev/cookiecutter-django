@@ -4,7 +4,7 @@
   "description": "Wochacha Template Project!",
   "author_name": "Aiden Lu",
   "domain_name": "wochacha.com",
-  "email": "{{ cookiecutter.author_name.lower()|replace(' ', '-') }}@wochacha.com",
+  "email": "{{ cookiecutter.author_name.lower() | trim() |replace(' ', '-') }}@{{ cookiecutter.domain_name.lower() | trim() }}",
   "version": "0.1.0",
   "open_source_license": [
     "Not open source",

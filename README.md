@@ -19,7 +19,7 @@ production-ready Django projects quickly.
 
 ## Features
 
--   For Django 4.0
+-   For Django 4.1
 -   Works with Python 3.10
 -   Renders Django projects with 100% starting test coverage
 -   Twitter [Bootstrap](https://github.com/twbs/bootstrap) v5
@@ -31,7 +31,7 @@ production-ready Django projects quickly.
 -   Optional basic ASGI setup for Websockets
 -   Optional custom static build using Gulp or Webpack
 -   Send emails via [Anymail](https://github.com/anymail/django-anymail) (using [Mailgun](http://www.mailgun.com/) by default or Amazon SES if AWS is selected cloud provider, but switchable)
--   Media storage using Amazon S3, Google Cloud Storage, Azure Storage or Alibaba Cloud Storage
+-   Media storage using Amazon S3, Google Cloud Storage, Azure Storage, Alibaba Cloud Storage or nginx
 -   Docker support using [docker-compose](https://github.com/docker/compose) for development and production (using [Traefik](https://traefik.io/) with [LetsEncrypt](https://letsencrypt.org/) support)
 -   [Procfile](https://devcenter.heroku.com/articles/procfile) for deploying to Heroku
 -   Instructions for deploying to [PythonAnywhere](https://www.pythonanywhere.com/)
