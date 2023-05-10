@@ -4,6 +4,7 @@ Base settings to build other settings files upon.
 from pathlib import Path
 
 import environ
+from django.utils.translation import gettext_lazy as _
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # {{ cookiecutter.project_slug }}/
@@ -13,7 +14,8 @@ env = environ.Env()
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=True)
 if READ_DOT_ENV_FILE:
     # OS environment variables take precedence over variables from .env
-    env.read_env(str(BASE_DIR / ".env"))
+    with open(str(BASE_DIR / ".env"), encoding="utf-8") as fo:
+        env.read_env(fo)
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -24,8 +26,17 @@ DEBUG = env.bool("DJANGO_DEBUG", False)
 # though not all of them may be available with every OS.
 # In Windows, this must be set to your system time zone.
 TIME_ZONE = "{{ cookiecutter.timezone }}"
+# https://docs.djangoproject.com/en/dev/ref/settings/#languages
+LANGUAGES = (
+    ("zh", _("Chinese")),
+    ("en", _("English")),
+)
 # https://docs.djangoproject.com/en/dev/ref/settings/#language-code
 LANGUAGE_CODE = "en-us"
+# https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-DATETIME_FORMAT
+DATETIME_FORMAT = "Y-m-d H:i:s"
+# https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-DATE_FORMAT
+DATE_FORMAT = "Y-m-d"
 # https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-i18n
@@ -39,7 +50,7 @@ LOCALE_PATHS = [str(BASE_DIR / "locale")]
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {"default": env.db("DATABASE_URL")}
-DATABASES["default"]["ATOMIC_REQUESTS"] = True
+DATABASES["default"]["ATOMIC_REQUESTS"] = False
 # https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-DEFAULT_AUTO_FIELD
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
@@ -210,7 +221,7 @@ SESSION_COOKIE_HTTPONLY = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#csrf-cookie-httponly
 CSRF_COOKIE_HTTPONLY = False
 # https://docs.djangoproject.com/en/dev/ref/settings/#x-frame-options
-X_FRAME_OPTIONS = "DENY"
+X_FRAME_OPTIONS = "SAMEORIGIN"  # django-admin-interface need to be set to `sameorigin`
 
 # EMAIL
 # ------------------------------------------------------------------------------
@@ -265,6 +276,8 @@ if USE_TZ:
 CELERY_BROKER_URL = env("CELERY_BROKER_URL")
 # https://docs.celeryq.dev/en/stable/userguide/configuration.html#std:setting-result_backend
 CELERY_RESULT_BACKEND = CELERY_BROKER_URL
+# https://docs.celeryproject.org/en/stable/userguide/configuration.html#std-setting-task_default_queue
+CELERY_TASK_DEFAULT_QUEUE = env("CELERY_TASK_DEFAULT_QUEUE", default="celery-{{ cookiecutter.project_slug }}")
 # https://docs.celeryq.dev/en/stable/userguide/configuration.html#result-extended
 CELERY_RESULT_EXTENDED = True
 # https://docs.celeryq.dev/en/stable/userguide/configuration.html#result-backend-always-retry
@@ -290,6 +303,8 @@ CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 CELERY_WORKER_SEND_TASK_EVENTS = True
 # https://docs.celeryq.dev/en/stable/userguide/configuration.html#std-setting-task_send_sent_event
 CELERY_TASK_SEND_SENT_EVENT = True
+# https://docs.celeryq.dev/en/stable/userguide/configuration.html#std-setting-worker_max_tasks_per_child
+CELERY_WORKER_MAX_TASKS_PER_CHILD = env("CELERY_WORKER_MAX_TASKS_PER_CHILD", default=30)
 
 {%- endif %}
 # django-rest-framework
@@ -308,12 +323,14 @@ REST_FRAMEWORK = {
         "drfexts.renderers.CustomJSONRenderer",
         "rest_framework.renderers.BrowsableAPIRenderer",
     ),
+    "DEFAULT_VERSION": "v1",
     "UNICON_JSON": False,
     "DATETIME_FORMAT": "%Y-%m-%d %H:%M:%S",
     "PAGE_SIZE": 10,
 }
 
 # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
+CORS_ALLOW_CREDENTIALS = True
 CORS_URLS_REGEX = r"^/api/.*$"
 
 # By Default swagger ui is available only to admin user(s). You can change permission classes to change that
@@ -334,5 +351,10 @@ CHANNEL_LAYERS = {
     "default": {"BACKEND": "channels_redis.core.RedisChannelLayer", "CONFIG": {"hosts": [env("REDIS_URL")]}}
 }
 {%- endif %}
+
+# Session
+SESSION_COOKIE_AGE = 86400  # 一天
+SESSION_SAVE_EVERY_REQUEST = True
+
 # Your stuff...
 # ------------------------------------------------------------------------------
