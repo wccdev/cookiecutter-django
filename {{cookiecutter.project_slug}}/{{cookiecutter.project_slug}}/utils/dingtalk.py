@@ -58,7 +58,6 @@ class HTTPXProxyClient(APIRequestProxyClient):
         url: str,
         **kwargs,
     ) -> dict[str, typing.Any]:
-
         resp: httpx.Response = getattr(self._client, method)(url, **kwargs)
         try:
             json_data = resp.json()

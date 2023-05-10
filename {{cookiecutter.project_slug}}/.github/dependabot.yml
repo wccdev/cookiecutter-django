@@ -88,14 +88,3 @@ updates:
     schedule:
       interval: "daily"
 
-{%- if cookiecutter.frontend_pipeline == 'Gulp' %}
-
-  # Enable version updates for javascript/npm
-  - package-ecosystem: "npm"
-    # Look for a `packages.json` in the `root` directory
-    directory: "/"
-    # Every weekday
-    schedule:
-      interval: "daily"
-
-{%- endif %}

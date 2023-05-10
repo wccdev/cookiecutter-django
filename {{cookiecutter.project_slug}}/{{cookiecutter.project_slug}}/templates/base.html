@@ -1,6 +1,5 @@
 {% raw %}{% load static i18n {% endraw %}
-{%- if cookiecutter.frontend_pipeline == 'Django Compressor' %}compress
-{%- endif %}{% raw %}%}{% endraw %}
+{% raw %}%}{% endraw %}
 {%- if cookiecutter.frontend_pipeline == 'Webpack' %}{% raw %}{% load render_bundle from webpack_loader %}{% endraw %}
 {%- endif %}{% raw %}<!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
@@ -17,12 +16,6 @@
 
     {% block css %}
     {%- endraw %}
-    {%- if cookiecutter.frontend_pipeline in ['None', 'Django Compressor'] %}
-    {%- raw %}
-    <!-- Latest compiled and minified Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    {%- endraw %}
-    {%- endif %}
     {%- raw %}
     <!-- Your stuff: Third-party CSS libraries go here -->
 
