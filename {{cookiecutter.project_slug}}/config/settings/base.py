@@ -89,6 +89,7 @@ THIRD_PARTY_APPS = [
     "rest_framework.authtoken",
     "corsheaders",
     "drf_spectacular",
+    "casdoor_auth",
 ]
 
 LOCAL_APPS = [
@@ -356,6 +357,20 @@ CHANNEL_LAYERS = {
 # Session
 SESSION_COOKIE_AGE = 86400  # 一天
 SESSION_SAVE_EVERY_REQUEST = True
+
+# Casdoor
+with open(BASE_DIR / "certs/token_jwt_key.pem") as cert_file:
+    cert_content = cert_file.read()
+
+CASDOOR_CONFIG = {
+    "endpoint": env("CASDOOR_ENDPOINT"),
+    "client_id": env("CASDOOR_CLIENT_ID"),
+    "client_secret": env("CASDOOR_CLIENT_SECRET"),
+    "org_name": env("CASDOOR_ORG_NAME"),
+    "application_name": env("CASDOOR_APPLICATION_NAME"),
+    "certificate": cert_content,
+}
+REDIRECT_URI = env("CASDOOR_REDIRECT_URI")
 
 # Your stuff...
 # ------------------------------------------------------------------------------
