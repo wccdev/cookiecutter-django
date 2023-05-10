@@ -457,7 +457,7 @@ def main():
 
     if "{{ cookiecutter.use_heroku }}".lower() == "n":
         remove_heroku_files()
-    elif "{{ cookiecutter.frontend_pipeline }}" != "Django Compressor":
+    else:
         remove_heroku_build_hooks()
 
     if (
