@@ -36,13 +36,19 @@ DEBUG_VALUE = "debug"
 def remove_open_source_files():
     file_names = ["CONTRIBUTORS.txt", "LICENSE"]
     for file_name in file_names:
-        os.remove(file_name)
+        try:
+            os.remove(file_name)
+        except OSError:
+            pass
 
 
 def remove_gplv3_files():
     file_names = ["COPYING"]
     for file_name in file_names:
-        os.remove(file_name)
+        try:
+            os.remove(file_name)
+        except OSError:
+            pass
 
 
 def remove_pycharm_files():
