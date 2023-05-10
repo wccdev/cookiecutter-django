@@ -7,7 +7,7 @@ from rest_framework.routers import DefaultRouter
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 {%- endif %}
 from django.http import HttpResponse
-from django.urls import include, path, re_path
+from django.urls import include, path, re_path, reverse_lazy
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView

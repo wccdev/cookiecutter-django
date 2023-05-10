@@ -68,7 +68,6 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
-    "widget_tweaks",
     "channels",
     "notification",
     "django_filters",
@@ -323,6 +322,7 @@ SPECTACULAR_SETTINGS = {
     "TITLE": "{{ cookiecutter.project_name }} API",
     "DESCRIPTION": "Documentation of API endpoints of {{ cookiecutter.project_name }}",
     "VERSION": "1.0.0",
+    "SCHEMA_PATH_PREFIX": "/api/v[0-9]",
     "DISABLE_ERRORS_AND_WARNINGS": True,
     "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
 }
