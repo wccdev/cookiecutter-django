@@ -90,11 +90,6 @@ def remove_heroku_files():
             os.remove(file_name)
         except OSError:
             pass
-    remove_heroku_build_hooks()
-
-
-def remove_heroku_build_hooks():
-    shutil.rmtree("bin")
 
 
 def remove_sass_files():
@@ -111,7 +106,6 @@ def remove_gulp_files():
 
 
 def remove_webpack_files():
-    shutil.rmtree("webpack")
     remove_vendors_js()
 
 
@@ -455,8 +449,6 @@ def main():
 
     if "{{ cookiecutter.use_heroku }}".lower() == "n":
         remove_heroku_files()
-    else:
-        remove_heroku_build_hooks()
 
     if (
         "{{ cookiecutter.use_docker }}".lower() == "n"
