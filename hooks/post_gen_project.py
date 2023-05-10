@@ -101,7 +101,10 @@ def remove_sass_files():
 def remove_gulp_files():
     file_names = ["gulpfile.js"]
     for file_name in file_names:
-        os.remove(file_name)
+        try:
+            os.remove(file_name)
+        except OSError:
+            pass
 
 
 def remove_webpack_files():
@@ -400,14 +403,6 @@ def remove_celery_compose_dirs():
     shutil.rmtree(os.path.join("compose", "production", "django", "celery"))
 
 
-def remove_node_dockerfile():
-    shutil.rmtree(os.path.join("compose", "local", "node"))
-
-
-def remove_aws_dockerfile():
-    shutil.rmtree(os.path.join("compose", "production", "aws"))
-
-
 def remove_drf_starter_files():
     os.remove(os.path.join("config", "api_router.py"))
     shutil.rmtree(os.path.join("{{cookiecutter.project_slug}}", "users", "api"))
@@ -454,12 +449,6 @@ def main():
         remove_utility_files()
     else:
         remove_docker_files()
-
-    if (
-        "{{ cookiecutter.use_docker }}".lower() == "y"
-        and "{{ cookiecutter.cloud_provider}}" != "AWS"
-    ):
-        remove_aws_dockerfile()
 
     if "{{ cookiecutter.use_heroku }}".lower() == "n":
         remove_heroku_files()
