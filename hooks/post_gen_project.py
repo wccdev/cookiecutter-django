@@ -225,11 +225,17 @@ def remove_async_files():
 
 
 def remove_dottravisyml_file():
-    os.remove(".travis.yml")
+    try:
+        os.remove(".travis.yml")
+    except OSError:
+        pass
 
 
 def remove_dotgitlabciyml_file():
-    os.remove(".gitlab-ci.yml")
+    try:
+        os.remove(".gitlab-ci.yml")
+    except OSError:
+        pass
 
 
 def remove_dotgithub_folder():
