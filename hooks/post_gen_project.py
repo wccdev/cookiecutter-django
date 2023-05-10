@@ -86,7 +86,10 @@ def remove_heroku_files():
         ):
             # don't remove the file if we are using travisci but not using heroku
             continue
-        os.remove(file_name)
+        try:
+            os.remove(file_name)
+        except OSError:
+            pass
     remove_heroku_build_hooks()
 
 
