@@ -11,11 +11,7 @@ User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "username", "name", "url"]
-
-        extra_kwargs = {
-            "url": {"view_name": "api:user-detail", "lookup_field": "username"}
-        }
+        fields = ["id", "username", "name", "avatar", "is_active"]
 
 
 class UserLoginSerializer(WCCModelSerializer):
@@ -41,8 +37,6 @@ class UserLoginSerializer(WCCModelSerializer):
         if not user.check_password(password):
             raise ValidationError(detail="密码错误！")
         if not user.is_active:
-            raise ValidationError(detail="该账号尚未激活！")
-        if user.status == SimpleStatus.INVALID:
             raise ValidationError(detail="该账号已被停用！")
 
         return attrs
@@ -50,7 +44,7 @@ class UserLoginSerializer(WCCModelSerializer):
     def save(self):
         user = self.validated_data["username"]
         request = self.context.get("request")
-        login(request, user, backend="django.contrib.auth.backends.ModelBackend")
+        login(request, user)
         return user
 
     class Meta:
