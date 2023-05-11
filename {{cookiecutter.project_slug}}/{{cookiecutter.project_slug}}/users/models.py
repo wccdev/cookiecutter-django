@@ -16,4 +16,4 @@ class User(AbstractUser):
     first_name = None  # type: ignore
     last_name = None  # type: ignore
 
-    avatar = ImageField(_("Avatar"), blank=True, null=True)
+    avatar = ImageField(_("Avatar"), upload_to="avatars/", blank=True, null=True)

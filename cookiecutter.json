@@ -45,7 +45,7 @@
   "use_async": "y",
   "use_celery": "y",
   "use_mailpit": "y",
-  "use_sentry": "n",
+  "use_sentry": "y",
   "use_whitenoise": "n",
   "use_heroku": "n",
   "ci_tool": [

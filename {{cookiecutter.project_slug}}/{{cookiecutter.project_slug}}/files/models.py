@@ -16,7 +16,7 @@ class UploadedFile(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = "上传文件"
-        db_table = 'files"."uploaded_file'
+        db_table = 'base"."uploaded_file'
 
     def __str__(self):
         return self.filename
