@@ -1,52 +1,58 @@
 DO $$ DECLARE
+
 i record;
 max_id INTEGER;
 sequence_name TEXT;
-_start_value INTEGER;
-_last_value INTEGER;
-BEGIN
-		FOR i IN SELECT TABLE_NAME
-		,
-		TABLE_SCHEMA,
-		COLUMN_NAME,
-		COLUMN_DEFAULT
-	FROM
-		information_schema.COLUMNS
-	WHERE
-		column_default LIKE'%nextval%'
-		LOOP
-		sequence_name = reverse (
-			split_part(
-				reverse ( SPLIT_PART( i.column_default, '''', 2 ) ),
-				'.',
-				1
-			)
-		);
-	EXECUTE format (
-		'SELECT max(%I) from %I.%I',
-		i.COLUMN_NAME,
-		i.TABLE_SCHEMA,
-		i.TABLE_NAME
-	) INTO max_id;
-	EXECUTE format ( 'SELECT last_value, start_value FROM pg_sequences where schemaname=$1 and sequencename=$2' ) INTO _last_value,
-	_start_value USING i.TABLE_SCHEMA,
-	sequence_name;
-	IF
-		max_id IS NULL
-		OR ( _last_value IS NULL AND _start_value > max_id )
-		OR _last_value >= max_id THEN
-			CONTINUE;
 
-	END IF;
-	EXECUTE format (
-		'SELECT setval(%L, %L)',
-		i.TABLE_SCHEMA || '.' || sequence_name,
-		max_id
-	);
-	RAISE NOTICE'%, (%) --> (%)',
-	i.TABLE_SCHEMA || '.' || i.TABLE_NAME,
-	_last_value,
-	max_id;
+BEGIN
+FOR i IN SELECT
+    nsp.nspname AS schema,
+    seq.relname AS sequence,
+    tab.relname AS table,
+    attr.attname AS column,
+		pseq.start_value,
+		pseq.last_value
+FROM
+    pg_class seq
+INNER JOIN
+    pg_depend dep ON (dep.objid = seq.oid)
+INNER JOIN
+    pg_class tab ON (dep.refobjid = tab.oid)
+INNER JOIN
+    pg_attribute attr ON (attr.attnum = dep.refobjsubid AND attr.attrelid = tab.oid)
+INNER JOIN
+    pg_namespace nsp ON (nsp.oid = tab.relnamespace)
+INNER JOIN
+    pg_index ind ON (ind.indrelid = tab.oid AND ind.indisprimary)
+INNER JOIN
+    pg_sequences pseq ON (pseq.schemaname = nsp.nspname and pseq.sequencename = seq.relname)
+WHERE
+    seq.relkind = 'S'
+LOOP
+
+EXECUTE format (
+'SELECT max(%I) from %I.%I',
+i.column,
+i.schema,
+i.table
+) INTO max_id;
+
+IF
+max_id IS NULL
+OR ( i.last_value IS NULL AND i.start_value > max_id )
+OR i.last_value >= max_id THEN
+CONTINUE;
+END IF;
+
+EXECUTE format (
+'SELECT setval(%L, %L)',
+i.schema || '.' || i.sequence,
+max_id
+);
+RAISE NOTICE'%, (%) --> (%)',
+i.schema || '.' || i.table,
+i.last_value,
+max_id;
 
 END LOOP;
 
