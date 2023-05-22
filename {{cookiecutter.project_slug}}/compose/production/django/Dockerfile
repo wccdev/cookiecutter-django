@@ -1,6 +1,6 @@
 # syntax = docker/dockerfile:1.2
 ARG PYTHON_VERSION=3.11-slim-bullseye
-ARG POETRY_VERSION=1.4.2
+ARG POETRY_VERSION=1.5.0
 ARG BUILD_ENVIRONMENT=production
 ARG APP_HOME=/app
 

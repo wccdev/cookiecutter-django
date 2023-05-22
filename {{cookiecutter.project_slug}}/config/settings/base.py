@@ -90,6 +90,8 @@ THIRD_PARTY_APPS = [
     "corsheaders",
     "drf_spectacular",
     "casdoor_auth",
+    "drf_operation_log",
+    "drf_api_logger",
 ]
 
 LOCAL_APPS = [
@@ -154,6 +156,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_currentuser.middleware.ThreadLocalUserMiddleware",
+    "drf_api_logger.middleware.api_logger_middleware.APILoggerMiddleware",
 ]
 
 # STATIC
@@ -371,6 +375,17 @@ CASDOOR_CONFIG = {
     "certificate": cert_content,
 }
 REDIRECT_URI = env("CASDOOR_REDIRECT_URI")
+
+
+# Drf api logger - https://github.com/anyidea/DRF-API-Logger
+DRF_API_LOGGER_DATABASE = True  # Default to False
+DRF_API_LOGGER_PATH_TYPE = "FULL_PATH"  # Default to ABSOLUTE if not specified
+# You can skip the entire app to be logged into the database by specifying namespace of the app as list.
+DRF_API_LOGGER_SKIP_URL_NAME = [
+    "api-schema",
+]
+DRF_API_LOGGER_REQUEST_ID_HEADER = "X-Request-ID"
+DRF_API_LOGGER_METHODS = ["POST", "PATCH", "DELETE", "PUT"]
 
 # Your stuff...
 # ------------------------------------------------------------------------------

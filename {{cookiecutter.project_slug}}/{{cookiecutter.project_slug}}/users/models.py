@@ -17,3 +17,4 @@ class User(AbstractUser):
     last_name = None  # type: ignore
 
     avatar = ImageField(_("Avatar"), upload_to="avatars/", blank=True, null=True)
+    phone = CharField(_("Phone"), blank=True, max_length=32)
