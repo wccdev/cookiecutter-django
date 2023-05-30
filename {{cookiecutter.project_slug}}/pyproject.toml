@@ -7,7 +7,7 @@ authors = ["{{cookiecutter.author_name}}"]
 [[tool.poetry.source]]
 name = "wcc-pypi"
 url = "https://pypi.wochacha.cn/simple/"
-default = true
+priority = "default"
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -40,9 +40,10 @@ channels-redis = "^3.3.1" # https://github.com/django/channels_redis
 django-storages = { version = "^1.13.2", extras = [
   "boto3",
 ] } # https://github.com/jschneier/django-storages
-django-admin-interface = ">=0.19.1" # https://github.com/fabiocaccamo/django-admin-interface
+django-admin-interface = ">=0.26.0" # https://github.com/fabiocaccamo/django-admin-interface
 wcc-python-sdk-django-casdoor = "^1.0.6" # https://github.com/wccdev/django-casdoor-auth
 django-currentuser = "^0.5.4" # https://github.com/PaesslerAG/django-currentuser
+psycopg = "^3.1.9"  # https://github.com/psycopg/psycopg
 
 # Django REST Framework
 djangorestframework = "^3.14.0"                              # https://github.com/encode/django-rest-framework
@@ -61,7 +62,6 @@ optional = true
 uvicorn = { version = "^0.18.2", extras = [
   "standard",
 ] } # https://github.com/encode/uvicorn
-psycopg2 = "^2.9.5" # https://github.com/psycopg/psycopg2
 sentry-sdk = "^1.12.1" # https://github.com/getsentry/sentry-python
 gunicorn = "^20.1.0" # https://github.com/benoitc/gunicorn
 
@@ -77,7 +77,7 @@ collectfast = "^2.2.0"  # https://github.com/antonagestam/collectfast
 Werkzeug = ">=2.2.2"       # https://github.com/pallets/werkzeug
 ipdb = ">=0.13.11"         # https://github.com/gotcha/ipdb
 bpython = "^0.23"          # https://github.com/bpython/bpython
-psycopg2-binary = "^2.9.5" # https://github.com/psycopg/psycopg2
+psycopg-binary = "^3.1.9" # https://github.com/psycopg/psycopg
 watchfiles = ">=0.18.1"    # https://github.com/samuelcolvin/watchfiles
 
 # Testing
