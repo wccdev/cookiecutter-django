@@ -3,6 +3,8 @@ ARG PYTHON_VERSION=3.11-slim-bullseye
 ARG POETRY_VERSION=1.5.1
 ARG BUILD_ENVIRONMENT=production
 ARG APP_HOME=/app
+ARG APT_SOURCE=https://mirrors.aliyun.com
+ARG PIP_INDEX_URL=https://pypi.wochacha.cn/simple/
 
 # define an alias for the specfic python version used in this file.
 FROM python:${PYTHON_VERSION} as python
@@ -11,15 +13,19 @@ FROM python:${PYTHON_VERSION} as python
 FROM python as python-build-stage
 
 ARG APP_HOME
+ARG POETRY_VERSION
+ARG BUILD_ENVIRONMENT
+ARG APT_SOURCE
+ARG PIP_INDEX_URL
 
 ENV POETRY_VIRTUALENVS_IN_PROJECT=true
-ENV PIP_INDEX_URL=https://pypi.wochacha.cn/simple/
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 ENV PIP_DISABLE_PIP_VERSION_CHECK=1
 
 WORKDIR ${APP_HOME}
 
 # Install apt packages
-RUN sed -i "s@http://deb.debian.org@https://mirrors.aliyun.com@g" /etc/apt/sources.list \
+RUN sed -i "s@http://deb.debian.org@${APT_SOURCE}@g" /etc/apt/sources.list \
     && apt-get update && apt-get install -y --no-install-recommends \
     # dependencies for building Python packages
     build-essential \
@@ -43,6 +49,7 @@ FROM python as python-run-stage
 
 ARG BUILD_ENVIRONMENT
 ARG APP_HOME
+ARG APT_SOURCE
 
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -58,7 +65,7 @@ RUN addgroup --system django \
 
 
 # Install required system dependencies
-RUN sed -i "s@http://deb.debian.org@https://mirrors.aliyun.com@g" /etc/apt/sources.list \
+RUN sed -i "s@http://deb.debian.org@${APT_SOURCE}@g" /etc/apt/sources.list \
     && apt-get update && apt-get install -y --no-install-recommends \
     # psycopg2 dependencies
     libpq-dev \
