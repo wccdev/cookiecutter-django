@@ -93,6 +93,8 @@ AWS_STORAGE_BUCKET_NAME = env("DJANGO_OSS_STORAGE_BUCKET_NAME")
 # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
 AWS_S3_ADDRESSING_STYLE = "virtual"
 # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
+AWS_S3_SIGNATURE_VERSION = "s3v4"
+# https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
 AWS_S3_REGION_NAME = env("DJANGO_OSS_REGION_NAME", default="oss-cn-shanghai")
 # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
 AWS_S3_ENDPOINT_URL = f"https://{AWS_S3_REGION_NAME}.aliyuncs.com"
