@@ -90,7 +90,6 @@ THIRD_PARTY_APPS = [
     "corsheaders",
     "drf_spectacular",
     "casdoor_auth",
-    "drf_operation_log",
     "drf_api_logger",
 ]
 
