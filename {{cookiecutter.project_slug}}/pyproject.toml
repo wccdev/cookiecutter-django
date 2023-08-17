@@ -37,6 +37,7 @@ crispy-bootstrap5 = "^0.7" # https://github.com/django-crispy-forms/crispy-boots
 django-redis = "^5.2.0" # https://github.com/jazzband/django-redis
 channels = "^4.0.0" # https://github.com/django/channels
 channels-redis = "^4.1.0" # https://github.com/django/channels_redis
+botocore = "^1.31.0"
 django-storages = { version = "^1.13.2", extras = [
   "boto3",
 ] } # https://github.com/jschneier/django-storages
