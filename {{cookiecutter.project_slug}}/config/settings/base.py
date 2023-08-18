@@ -272,6 +272,8 @@ LOGGING = {
 }
 
 {% if cookiecutter.use_celery == 'y' -%}
+
+
 # Celery
 # ------------------------------------------------------------------------------
 if USE_TZ:
@@ -281,8 +283,6 @@ if USE_TZ:
 CELERY_BROKER_URL = env("CELERY_BROKER_URL")
 # https://docs.celeryq.dev/en/stable/userguide/configuration.html#std:setting-result_backend
 CELERY_RESULT_BACKEND = CELERY_BROKER_URL
-# https://docs.celeryproject.org/en/stable/userguide/configuration.html#std-setting-task_default_queue
-CELERY_TASK_DEFAULT_QUEUE = env("CELERY_TASK_DEFAULT_QUEUE", default="celery-{{ cookiecutter.project_slug }}")
 # https://docs.celeryq.dev/en/stable/userguide/configuration.html#result-extended
 CELERY_RESULT_EXTENDED = True
 # https://docs.celeryq.dev/en/stable/userguide/configuration.html#result-backend-always-retry
