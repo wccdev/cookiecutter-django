@@ -6,6 +6,7 @@
 <!-- [![Coverage Report](https://gl.wochacha.cn/wcc-scm/backend/{{cookiecutter.project_name}}/badges/master/coverage.svg)](https://gl.wochacha.cn/wcc-scm/backend/{{cookiecutter.project_name}}/-/commits/master) -->
 [![Python Version](https://img.shields.io/badge/python-3.10-blue)](https://www.python.org/)
 [![Django Version](https://img.shields.io/badge/django-4.1-076c45)](https://www.djangoproject.com/)
+[![Poetry](https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json)](https://python-poetry.org/)
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 [![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
