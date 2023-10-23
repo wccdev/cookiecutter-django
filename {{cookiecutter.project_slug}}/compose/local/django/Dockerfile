@@ -1,5 +1,5 @@
 # syntax = docker/dockerfile:1.2
-ARG PYTHON_VERSION=3.11-slim-bullseye
+ARG PYTHON_VERSION=3.11-slim-bookworm
 ARG POETRY_VERSION=1.6.1
 ARG BUILD_ENVIRONMENT=local
 ARG APP_HOME=/app
