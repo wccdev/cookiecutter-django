@@ -23,7 +23,7 @@ ENV POETRY_INSTALLER_MAX_WORKERS=4
 WORKDIR ${APP_HOME}
 
 # Install apt packages
-RUN sed -i "s/deb.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list \
+RUN sed -i "s@http://deb.debian.org@https://mirrors.aliyun.com@g" /etc/apt/sources.list \
     && apt-get update && apt-get install -y --no-install-recommends \
     # dependencies for building Python packages
     build-essential \
@@ -58,7 +58,7 @@ ENV LC_ALL=C.UTF-8
 WORKDIR ${APP_HOME}
 
 # Install required system dependencies
-RUN sed -i "s/deb.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list \
+RUN sed -i "s@http://deb.debian.org@https://mirrors.aliyun.com@g" /etc/apt/sources.list.d/debian.sources \
     && apt-get update && apt-get install -y --no-install-recommends \
     # psycopg2 dependencies
     libpq-dev \
