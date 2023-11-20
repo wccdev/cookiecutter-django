@@ -28,7 +28,7 @@ ENV POETRY_INSTALLER_MAX_WORKERS=4
 WORKDIR ${APP_HOME}
 
 # Install apt packages
-RUN sed -i "s@http://deb.debian.org@${APT_SOURCE}@g" /etc/apt/sources.list \
+RUN sed -i "s@http://deb.debian.org@https://${APT_SOURCE}@g" /etc/apt/sources.list.d/debian.sources \
     && apt-get update && apt-get install -y --no-install-recommends \
     # dependencies for building Python packages
     build-essential \
@@ -68,7 +68,7 @@ RUN addgroup --system django \
 
 
 # Install required system dependencies
-RUN sed -i "s@http://deb.debian.org@${APT_SOURCE}@g" /etc/apt/sources.list \
+RUN sed -i "s@http://deb.debian.org@https://${APT_SOURCE}@g" /etc/apt/sources.list.d/debian.sources \
     && apt-get update && apt-get install -y --no-install-recommends \
     # psycopg2 dependencies
     libpq-dev \
