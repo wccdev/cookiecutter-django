@@ -26,6 +26,7 @@ django-celery-beat = ">=2.5.0" # https://github.com/celery/django-celery-beat
 httpx = { extras = [
   "http2",
 ], version = "^0.22.0" } # https://github.com/encode/httpx/
+brotli = "^1.1.0"  # https://github.com/google/brotli
 
 # Django
 # ------------------------------------------------------------------------------
