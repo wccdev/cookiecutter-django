@@ -148,6 +148,8 @@ MIDDLEWARE = [
 {%- if cookiecutter.use_whitenoise == 'y' %}
     "whitenoise.middleware.WhiteNoiseMiddleware",
 {%- endif %}
+    "django.middleware.gzip.GZipMiddleware",
+    "{{ cookiecutter.project_slug }}.utils.middleware.BrotliMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
