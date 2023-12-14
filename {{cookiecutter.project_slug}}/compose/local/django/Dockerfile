@@ -1,5 +1,5 @@
 # syntax = docker/dockerfile:1.2
-ARG PYTHON_VERSION=3.11-slim-bookworm
+ARG PYTHON_VERSION=3.12-slim-bookworm
 ARG POETRY_VERSION=1.7.1
 ARG BUILD_ENVIRONMENT=local
 ARG APP_HOME=/app
@@ -18,12 +18,12 @@ ENV PIP_INDEX_URL=https://pypi.wochacha.cn/simple/
 ENV PIP_DISABLE_PIP_VERSION_CHECK=1
 ENV PIP_REQUESTS_TIMEOUT=120
 ENV POETRY_REQUESTS_TIMEOUT=120
-ENV POETRY_INSTALLER_MAX_WORKERS=4
+ENV POETRY_INSTALLER_MAX_WORKERS=10
 
 WORKDIR ${APP_HOME}
 
 # Install apt packages
-RUN sed -i "s@http://deb.debian.org@https://mirrors.aliyun.com@g" /etc/apt/sources.list \
+RUN sed -i "s@http://deb.debian.org@https://mirrors.aliyun.com@g" /etc/apt/sources.list.d/debian.sources \
     && apt-get update && apt-get install -y --no-install-recommends \
     # dependencies for building Python packages
     build-essential \
