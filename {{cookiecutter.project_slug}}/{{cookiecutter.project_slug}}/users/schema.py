@@ -16,5 +16,4 @@ class DynamicFieldsModelSerializerExtension(OpenApiSerializerExtension):
 
     def get_name(self, auto_schema, direction):
         # FIXME API-DOC 报错
-        # return self.target.ref_name
-        return getattr(self.target, "ref_name", self.target.__class__.__name__)
+        return self.target.ref_name or self.target.__class__.__name__
