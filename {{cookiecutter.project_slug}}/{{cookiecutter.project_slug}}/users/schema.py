@@ -5,6 +5,11 @@ from drfexts.serializers.serializers import WCCModelSerializer
 
 class DynamicFieldsModelSerializerExtension(OpenApiSerializerExtension):
     """
+    A ModelSerializer that takes an additional `fields` argument that
+        controls which fields should be displayed.
+        Taken from (only added ref_name)
+        https://www.django-rest-framework.org/api-guide/serializers/#dynamically-modifying-fields
+
     See issue: https://github.com/tfranzel/drf-spectacular/issues/375
     """
     target_class = WCCModelSerializer  # this can also be an import string
@@ -16,4 +21,4 @@ class DynamicFieldsModelSerializerExtension(OpenApiSerializerExtension):
 
     def get_name(self, auto_schema, direction):
         # FIXME API-DOC 报错
-        return self.target.ref_name or self.target.__class__.__name__
+        return self.target.ref_name
