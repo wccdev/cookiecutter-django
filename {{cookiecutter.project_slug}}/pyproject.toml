@@ -1,16 +1,22 @@
 [tool.poetry]
 name = "{{cookiecutter.project_name}}"
 version = "{{cookiecutter.version}}"
+package-mode = false
 description = "{{cookiecutter.description}}"
 authors = ["{{cookiecutter.author_name}}"]
 
 [[tool.poetry.source]]
+name = "aliyun-pypi"
+url = "http://mirrors.aliyun.com/pypi/simple/"
+priority = "primary"
+
+[[tool.poetry.source]]
 name = "wcc-pypi"
 url = "https://pypi.wochacha.cn/simple/"
-priority = "default"
+priority = "supplemental"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.12"
 
 pytz = "^2022.7" # https://github.com/stub42/pytz
 python-slugify = "^7.0.0" # https://github.com/un33k/python-slugify
@@ -30,7 +36,7 @@ brotli = "^1.1.0"  # https://github.com/google/brotli
 
 # Django
 # ------------------------------------------------------------------------------
-django = "^4.2.1" # pyup: < 5.0  # https://www.djangoproject.com/
+django = "^5.0.4" # pyup: < 6.0  # https://www.djangoproject.com/
 django-environ = "^0.9.0" # https://github.com/joke2k/django-environ
 django-model-utils = "^4.3.1" # https://github.com/jazzband/django-model-utils
 django-crispy-forms = "^1.14.0" # https://github.com/django-crispy-forms/django-crispy-forms
@@ -66,11 +72,12 @@ uvicorn = { version = "^0.18.2", extras = [
 ] } # https://github.com/encode/uvicorn
 sentry-sdk = "^1.24.0" # https://github.com/getsentry/sentry-python
 gunicorn = "^20.1.0" # https://github.com/benoitc/gunicorn
+psycopg = {version = "^3.1.18", extras = ["c"]} # https://github.com/psycopg/psycopg
 
 # Django
 # ------------------------------------------------------------------------------
 django-anymail = "^9.0" # https://github.com/anymail/django-anymail
-collectfast = "^2.2.0"  # https://github.com/antonagestam/collectfast
+collectfasta = "^3.1.3"  # https://github.com/jasongi/collectfasta
 
 # Django REST Framework
 # ------------------------------------------------------------------------------
@@ -79,7 +86,8 @@ collectfast = "^2.2.0"  # https://github.com/antonagestam/collectfast
 Werkzeug = ">=2.2.2"       # https://github.com/pallets/werkzeug
 ipdb = ">=0.13.11"         # https://github.com/gotcha/ipdb
 bpython = "^0.23"          # https://github.com/bpython/bpython
-psycopg-binary = "^3.1.9" # https://github.com/psycopg/psycopg
+psycopg = "^3.1.18"       # https://github.com/psycopg/psycopg
+psycopg-binary = "^3.1.18" # https://github.com/psycopg/psycopg
 watchfiles = ">=0.18.1"    # https://github.com/samuelcolvin/watchfiles
 
 # Testing
