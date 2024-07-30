@@ -182,10 +182,10 @@ EMAIL_BACKEND = env(
 ADMIN_URL = env("DJANGO_ADMIN_URL")
 
 {%- if cookiecutter.use_whitenoise == 'n' -%}
-# Collectfast
+# Collectfasta
 # ------------------------------------------------------------------------------
-# https://github.com/antonagestam/collectfast#installation
-INSTALLED_APPS = ["collectfast"] + INSTALLED_APPS  # noqa: F405
+# https://github.com/antonagestam/collectfasta#installation
+INSTALLED_APPS = ["collectfasta"] + INSTALLED_APPS  # noqa: F405
 {% endif %}
 
 # django-rest-framework
