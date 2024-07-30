@@ -184,7 +184,7 @@ ADMIN_URL = env("DJANGO_ADMIN_URL")
 {%- if cookiecutter.use_whitenoise == 'n' -%}
 # Collectfasta
 # ------------------------------------------------------------------------------
-# https://github.com/antonagestam/collectfasta#installation
+# https://github.com/jasongi/collectfasta#installation
 INSTALLED_APPS = ["collectfasta"] + INSTALLED_APPS  # noqa: F405
 {% endif %}
 
